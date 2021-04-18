@@ -81,6 +81,19 @@ namespace Kolko_I_Krzyzyk.ViewModel
             }
         }
 
+        private string ukryj = "Visible";
+        public string Ukryj
+        {
+            get { return ukryj; }
+            
+            set
+            {
+                ukryj = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Ukryj)));
+
+            }
+        }
+
         private ICommand wpisz;
         public ICommand Wpisz
         {
@@ -94,6 +107,32 @@ namespace Kolko_I_Krzyzyk.ViewModel
             }
         }
 
+        private ICommand end;
+        public ICommand End
+        {
+
+            get
+            {
+                return end ?? (end = new RelayCommand(
+                    p => { mainModel.exit(); },
+                    p => true
+                    ));
+            }
+        }
+
+        private ICommand reset;
+        public ICommand Reset
+        {
+
+            get
+            {
+                return reset ?? (reset = new RelayCommand(
+                    p => { mainModel.new_window(); },
+                    p => true
+                    ));
+            }
+        }
+
         private void ruch(object p)
         {
             Symbol = mainModel.ruch_gracza(int.Parse(p.ToString()));
@@ -103,12 +142,16 @@ namespace Kolko_I_Krzyzyk.ViewModel
             {
                 Text = "Zwycięzca:";
             }
-            
+            if (mainModel.remis())
+            {
+                Text = "Remis";
+                Ukryj = "Collapsed";
+            }
             Kogo_ruch = mainModel.zmien_ruch();
             Kolor_Text = mainModel.text_kolor();
             
 
         }
-
+        
     }
 }

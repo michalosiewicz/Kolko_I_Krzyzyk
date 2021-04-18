@@ -140,5 +140,43 @@ namespace Kolko_I_Krzyzyk.Model
             else
                 return "Red";
         }
+
+        public bool remis()
+        {
+            foreach(char s in pola)
+            {
+                if (s!='X'&&s!='O')
+                    return false;
+            }
+            return true;
+        }
+
+        public void new_window()
+        {
+            var wynik = MessageBox.Show("Czy na pewno chcesz rozpocząć grę od początku?", "Od nowa",
+                MessageBoxButton.YesNo);
+
+            if (wynik == MessageBoxResult.Yes)
+            {
+
+                Window oldWindow = App.Current.MainWindow;
+
+                App.Current.MainWindow = new MainWindow();
+                App.Current.MainWindow.Top = oldWindow.Top;
+                App.Current.MainWindow.Left = oldWindow.Left;
+                App.Current.MainWindow.Show();
+                oldWindow.Close();
+            }
+        }
+        public void exit()
+        {
+            var wynik = MessageBox.Show("Czy na pewno chcesz zamknąć grę?", "Wyjdź",
+                MessageBoxButton.YesNo);
+            if (wynik == MessageBoxResult.Yes)
+            {
+                App.Current.MainWindow.Close();
+            }
+        }
     }
+
 }

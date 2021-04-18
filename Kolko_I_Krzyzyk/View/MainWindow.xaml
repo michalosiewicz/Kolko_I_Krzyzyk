@@ -7,21 +7,20 @@
         xmlns:vm="clr-namespace:Kolko_I_Krzyzyk.ViewModel"
         mc:Ignorable="d"
         Title="Kółko i Krzyżyk" Height="450" Width="700" ResizeMode="CanMinimize">
-        
+
 
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Command" Value="{Binding Wpisz}"/>
             <Setter Property="FontSize" Value="80"/>
             <Setter Property="FontWeight" Value="Bold"/>
-
         </Style>
-       
     </Window.Resources>
 
     <Window.DataContext>
         <vm:MainViewModel x:Name="viewModel"/>
     </Window.DataContext>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="450"/>
@@ -42,8 +41,16 @@
             <TextBlock Grid.Row="1" Text="{Binding Kogo_ruch}" 
                      HorizontalAlignment="Center" 
                      VerticalAlignment="Top" 
-                     FontWeight="Bold" FontSize="80"
-                     Foreground="{Binding Kolor_Text}"/>
+                     FontWeight="Bold" FontSize="70"
+                     Foreground="{Binding Kolor_Text}"
+                     Visibility="{Binding Ukryj}"/>
+            <Button Grid.Row="3" Command="{Binding End}"
+                    FontSize="30" Content="Wyjdź z gry"
+                    Margin="5" Background="#FFF84A6A"/>
+            <Button Grid.Row="2" Command="{Binding Reset}"
+                    FontSize="30" Content="Od nowa"
+                    Margin="5" Background="#FFF84A6A"/>
+
         </Grid>
 
         <Grid Grid.Column="0">
@@ -52,12 +59,12 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
         <Button x:Name="Pole0" Grid.Column="0" Grid.Row="0"
                 Content="{Binding Symbol[0]}" 
                 CommandParameter="0"
