@@ -6,21 +6,47 @@
         xmlns:local="clr-namespace:Kolko_I_Krzyzyk"
         xmlns:vm="clr-namespace:Kolko_I_Krzyzyk.ViewModel"
         mc:Ignorable="d"
-        Title="Kółko i Krzyżyk" Height="450" Width="450">
+        Title="Kółko i Krzyżyk" Height="450" Width="700" ResizeMode="CanMinimize">
+        
 
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Command" Value="{Binding Wpisz}"/>
-            <Setter Property="FontSize" Value="50"/>
+            <Setter Property="FontSize" Value="80"/>
+            <Setter Property="FontWeight" Value="Bold"/>
 
         </Style>
+       
     </Window.Resources>
 
     <Window.DataContext>
         <vm:MainViewModel x:Name="viewModel"/>
     </Window.DataContext>
-    
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="450"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Ruch gracza:" 
+                     HorizontalAlignment="Center" 
+                     VerticalAlignment="Bottom" 
+                     FontWeight="Bold" FontSize="35"/>
+            <TextBlock Grid.Row="1" Text="{Binding Kogo_ruch}" 
+                     HorizontalAlignment="Center" 
+                     VerticalAlignment="Top" 
+                     FontWeight="Bold" FontSize="80"
+                     Foreground="{Binding Kolor_Text}"/>
+        </Grid>
+
+        <Grid Grid.Column="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -34,40 +60,50 @@
         
         <Button x:Name="Pole0" Grid.Column="0" Grid.Row="0"
                 Content="{Binding Symbol[0]}" 
-                CommandParameter="0"/>
+                CommandParameter="0"
+                Foreground="{Binding Kolor[0]}"/>
 
         <Button x:Name="Pole1" Grid.Column="1" Grid.Row="0"
                 Content="{Binding Symbol[1]}"
-                CommandParameter="1"/>
+                CommandParameter="1"
+                Foreground="{Binding Kolor[1]}" />
 
         <Button x:Name="Pole2" Grid.Column="2" Grid.Row="0"
                 Content="{Binding Symbol[2]}"
-                CommandParameter="2"/>
+                CommandParameter="2"
+                Foreground="{Binding Kolor[2]}"/>
 
         <Button x:Name="Pole3" Grid.Column="0" Grid.Row="1"
                 Content="{Binding Symbol[3]}"
-                CommandParameter="3"/>
+                CommandParameter="3"
+                Foreground="{Binding Kolor[3]}"/>
 
         <Button x:Name="Pole4" Grid.Column="1" Grid.Row="1"
                 Content="{Binding Symbol[4]}"
-                CommandParameter="4"/>
+                CommandParameter="4"
+                Foreground="{Binding Kolor[4]}"/>
 
         <Button x:Name="Pole5" Grid.Column="2" Grid.Row="1"
                 Content="{Binding Symbol[5]}"
-                CommandParameter="5"/>
+                CommandParameter="5"
+                Foreground="{Binding Kolor[5]}"/>
 
         <Button x:Name="Pole6" Grid.Column="0" Grid.Row="2"
                 Content="{Binding Symbol[6]}"
-                CommandParameter="6"/>
+                CommandParameter="6"
+                Foreground="{Binding Kolor[6]}"/>
 
         <Button x:Name="Pole7" Grid.Column="1" Grid.Row="2"
                 Content="{Binding Symbol[7]}"
-                CommandParameter="7"/>
+                CommandParameter="7"
+                Foreground="{Binding Kolor[7]}"/>
 
         <Button x:Name="Pole8" Grid.Column="2" Grid.Row="2"
                 Content="{Binding Symbol[8]}"
-                CommandParameter="8"/>
+                CommandParameter="8"
+                Foreground="{Binding Kolor[8]}"/>
 
 
+        </Grid>
     </Grid>
 </Window>

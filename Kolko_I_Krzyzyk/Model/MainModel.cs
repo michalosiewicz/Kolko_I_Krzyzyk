@@ -10,19 +10,18 @@ namespace Kolko_I_Krzyzyk.Model
     class MainModel
     {
         private char[] pola;
-        private char symbol = 'X';
+        private char symbol = 'O';
+        private string[] kolory;
+        private string kolor = "Green";
         
         public MainModel()
         {
             pola = new char[9];
+            kolory = new string[9];
         }
 
         public char[] ruch_gracza(int indeks)
-        {
-            if (symbol == 'O')
-                symbol = 'X';
-            else
-                symbol = 'O';
+        { 
             pola[indeks] = symbol;
             return pola;
         }
@@ -97,6 +96,33 @@ namespace Kolko_I_Krzyzyk.Model
             if (licznik == 3)
                 return symbol;
             return '0';
+        }
+    
+        public string[] zmien_Kolor(int indeks)
+        {
+            kolory[indeks] = kolor;
+            if (kolor == "Red")
+                kolor = "Green";
+            else
+                kolor = "Red";
+            return kolory;
+        }
+
+        public char zmien_ruch()
+        {
+            if (symbol == 'O')
+                symbol = 'X';
+            else
+                symbol = 'O';
+            return symbol;
+        }
+
+        public string text_kolor()
+        {
+            if (symbol == 'O')
+                return "Green";
+            else
+                return "Red";
         }
     }
 }

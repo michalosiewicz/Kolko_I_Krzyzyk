@@ -27,16 +27,53 @@ namespace Kolko_I_Krzyzyk.ViewModel
                 symbol = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Symbol)));
 
-                char winner=mainModel.sprawdz_gre();
+            }
+        }
+
+        private string[] kolor;
+        public string[] Kolor
+        {
+            get{ return kolor; }
+
+            private set
+            {
+                kolor = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Kolor)));
+                
+                char winner = mainModel.sprawdz_gre();
                 if (winner == 'O' || winner == 'X')
                 {
                     MessageBox.Show($"Wygrał gracz {winner}!", "Zwycięzca");
                     Application.Current.Shutdown();
                 }
-
             }
         }
 
+        private char kogo_ruch='O';
+
+        public char Kogo_ruch
+        {
+            get { return kogo_ruch; }
+            
+            set
+            {
+                kogo_ruch = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Kogo_ruch)));
+            }
+        }
+
+        private string kolor_text="Green";
+
+        public string Kolor_Text
+        {
+            get { return kolor_text; }
+
+            set
+            {
+                kolor_text = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Kolor_Text)));
+            }
+        }
 
         private ICommand wpisz;
         public ICommand Wpisz
@@ -45,10 +82,19 @@ namespace Kolko_I_Krzyzyk.ViewModel
             get
             {
                 return wpisz ?? (wpisz = new RelayCommand(
-                    p => { Symbol = mainModel.ruch_gracza(int.Parse(p.ToString())); },
+                    p => { ruch(p); },
                     p =>  mainModel.sprawdz_pole(int.Parse(p.ToString()))
                     ));
             }
+        }
+
+        private void ruch(object p)
+        {
+            Symbol = mainModel.ruch_gracza(int.Parse(p.ToString()));
+            Kolor = mainModel.zmien_Kolor(int.Parse(p.ToString()));
+            Kogo_ruch = mainModel.zmien_ruch();
+            Kolor_Text = mainModel.text_kolor();
+
         }
 
     }
