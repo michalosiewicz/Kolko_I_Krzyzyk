@@ -13,6 +13,7 @@ namespace Kolko_I_Krzyzyk.Model
         private char symbol = 'O';
         private string[] kolory;
         private string kolor = "Green";
+        private bool koniec_gry = false;
         
         public MainModel()
         {
@@ -28,13 +29,13 @@ namespace Kolko_I_Krzyzyk.Model
 
         public bool sprawdz_pole(int indeks)
         {
-            if (pola[indeks] == 'O' || pola[indeks] == 'X')
+            if (pola[indeks] == 'O' || pola[indeks] == 'X' || koniec_gry)
                 return false;
             else
                 return true;
         }
 
-        public char sprawdz_gre()
+        public bool sprawdz_gre()
         {
             int licznik = 0;
             
@@ -51,7 +52,10 @@ namespace Kolko_I_Krzyzyk.Model
                     }
                 }
                 if (licznik == 3)
-                    return symbol;
+                {
+                    koniec_gry = true;
+                    return true;
+                }
             }
             
             for (int j = 0; j < 3; j ++)
@@ -67,7 +71,10 @@ namespace Kolko_I_Krzyzyk.Model
                     }
                 }
                 if (licznik == 3)
-                    return symbol;
+                {
+                    koniec_gry = true;
+                    return true;
+                }
             }
             
             for (int i = 0; i < 9; i += 4)
@@ -81,7 +88,10 @@ namespace Kolko_I_Krzyzyk.Model
                 }
             }
             if (licznik == 3)
-                return symbol;
+            {
+                koniec_gry = true;
+                return true;
+            }
             
             for (int i = 2; i < 7; i += 2)
             {
@@ -94,8 +104,11 @@ namespace Kolko_I_Krzyzyk.Model
                 }
             }
             if (licznik == 3)
-                return symbol;
-            return '0';
+            {
+                koniec_gry = true;
+                return true;
+            }
+            return false;
         }
     
         public string[] zmien_Kolor(int indeks)
@@ -110,10 +123,13 @@ namespace Kolko_I_Krzyzyk.Model
 
         public char zmien_ruch()
         {
-            if (symbol == 'O')
-                symbol = 'X';
-            else
-                symbol = 'O';
+            if (!koniec_gry)
+            {
+                if (symbol == 'O')
+                    symbol = 'X';
+                else
+                    symbol = 'O';
+            }
             return symbol;
         }
 

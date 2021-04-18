@@ -39,13 +39,7 @@ namespace Kolko_I_Krzyzyk.ViewModel
             {
                 kolor = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Kolor)));
-                
-                char winner = mainModel.sprawdz_gre();
-                if (winner == 'O' || winner == 'X')
-                {
-                    MessageBox.Show($"Wygrał gracz {winner}!", "Zwycięzca");
-                    Application.Current.Shutdown();
-                }
+
             }
         }
 
@@ -72,6 +66,18 @@ namespace Kolko_I_Krzyzyk.ViewModel
             {
                 kolor_text = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Kolor_Text)));
+
+            }
+        }
+
+        private string text = "Ruch gracza:";
+        public string Text 
+        {
+            get { return text; }
+            set
+            {
+                text = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Text)));
             }
         }
 
@@ -92,8 +98,15 @@ namespace Kolko_I_Krzyzyk.ViewModel
         {
             Symbol = mainModel.ruch_gracza(int.Parse(p.ToString()));
             Kolor = mainModel.zmien_Kolor(int.Parse(p.ToString()));
+            
+            if (mainModel.sprawdz_gre())
+            {
+                Text = "Zwycięzca:";
+            }
+            
             Kogo_ruch = mainModel.zmien_ruch();
             Kolor_Text = mainModel.text_kolor();
+            
 
         }
 

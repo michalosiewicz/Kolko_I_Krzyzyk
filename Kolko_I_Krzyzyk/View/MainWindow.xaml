@@ -35,7 +35,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="Ruch gracza:" 
+            <TextBlock Grid.Row="0" Text="{Binding Text}" 
                      HorizontalAlignment="Center" 
                      VerticalAlignment="Bottom" 
                      FontWeight="Bold" FontSize="35"/>
