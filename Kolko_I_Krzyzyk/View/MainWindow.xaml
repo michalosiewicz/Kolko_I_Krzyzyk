@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Kolko_I_Krzyzyk"
         xmlns:vm="clr-namespace:Kolko_I_Krzyzyk.ViewModel"
         mc:Ignorable="d"
-        Title="Kółko i Krzyżyk" Height="450" Width="700" ResizeMode="CanMinimize">
+        Title="Kółko i Krzyżyk" Height="450" Width="700" 
+        ResizeMode="CanMinimize">
 
 
     <Window.Resources>

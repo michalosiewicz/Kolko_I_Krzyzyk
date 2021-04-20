@@ -142,7 +142,7 @@ namespace Kolko_I_Krzyzyk.ViewModel
             {
                 Text = "Zwycięzca:";
             }
-            if (mainModel.remis())
+            else if (mainModel.remis())
             {
                 Text = "Remis";
                 Ukryj = "Collapsed";
